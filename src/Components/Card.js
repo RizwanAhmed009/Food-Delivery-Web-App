@@ -26,20 +26,8 @@ const Card = (props) => {
           price: finalprice,
           qty: qty,
         });
-        return
-      }
-        
-        else if (food.size !== size) {
-          await dispatch({
-            type: "ADD",
-            id: props.fooditem._id,
-            name: props.fooditem.name,
-            price: finalprice,
-            qty: qty,
-            size: size,
-          })
-          return
-        }
+        return;
+      } else if (food.size !== size) {
         await dispatch({
           type: "ADD",
           id: props.fooditem._id,
@@ -47,14 +35,20 @@ const Card = (props) => {
           price: finalprice,
           qty: qty,
           size: size,
-          img: props.img,
         });
-      } 
-      
-     
-    
+        return;
+      }
+      await dispatch({
+        type: "ADD",
+        id: props.fooditem._id,
+        name: props.fooditem.name,
+        price: finalprice,
+        qty: qty,
+        size: size,
+        img: props.img,
+      });
+    }
 
-  
     console.log("cart data===", data);
   };
   let finalprice = qty * parseInt(options[size]);
